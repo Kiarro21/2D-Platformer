@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     [SerializeField] private float currentHP = 100f;
+    [SerializeField] private float maxHP = 100f;
     [SerializeField] private Text currentHpText;
 
     private void Awake(){
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     }
 
     private void Start() {
+        currentHP = maxHP;
         currentHpText.text = currentHP.ToString();
     }
 
