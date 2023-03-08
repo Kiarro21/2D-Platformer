@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     
     [Header("Player Movement Settings")]
-    [SerializeField][Range(0f, 10f)] private float speed = 5f;
-    [SerializeField][Range(0f, 10f)] private float jumpForse = 5f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForse = 15f;
 
 
     private float horizontalMove = 0f;
@@ -35,8 +36,7 @@ public class PlayerMove : MonoBehaviour
 
         CheckGround();
         if (isGround && Input.GetKeyDown(KeyCode.Space)){
-            rb.AddForce(transform.up * jumpForse, ForceMode2D.Impulse);
-            anim.SetBool("Jump", true);
+            Jump();
         }
 
         if (isGround == false){
@@ -57,6 +57,12 @@ public class PlayerMove : MonoBehaviour
             Flip();
         }
 
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(transform.up * jumpForse, ForceMode2D.Impulse);
+        anim.SetBool("Jump", true);
     }
 
     private void FixedUpdate() {

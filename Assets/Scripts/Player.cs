@@ -19,13 +19,18 @@ public class Player : MonoBehaviour
         currentHpText.text = currentHP.ToString();
     }
 
+    private void Update(){
+        ChangeCurrHpText();
+    }
+
     public void TakeHit(float damage){
         currentHP -= damage;
-        Discarding();
-        ChangeCurrHpText();
         if (currentHP <= 0){
+            currentHP = 0;
             Destroy(gameObject);
         }
+        Discarding();
+        ChangeCurrHpText();
     }
 
     public void Discarding(){
