@@ -9,8 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float currentHP = 100f;
     [SerializeField] private Text currentHpText;
 
-    void Awake(){
+    private void Awake(){
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start() {
+        currentHpText.text = currentHP.ToString();
     }
 
     public void TakeHit(float damage){
@@ -23,7 +27,7 @@ public class Player : MonoBehaviour
     }
 
     public void Discarding(){
-        float disX = Random.Range(-5f, 5f), disY = Random.Range(0f, 5f);
+        float disX = Random.Range(-3f, 3f), disY = Random.Range(0f, 5f);
         rb.AddForce(new Vector2(disX, disY), ForceMode2D.Impulse);
     }
 
