@@ -34,8 +34,7 @@ public class Player : MonoBehaviour
     }
 
     public void Discarding(){
-        float disX = Random.Range(-3f, 3f), disY = Random.Range(0f, 5f);
-        rb.AddForce(new Vector2(disX, disY), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0,1) * 6f, ForceMode2D.Impulse);
     }
 
     private void ChangeCurrHpText(){
