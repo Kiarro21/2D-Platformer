@@ -6,12 +6,18 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
+
+    
+
     [SerializeField] private float currentHP = 100f;
     [SerializeField] private float maxHP = 100f;
     [SerializeField] private Text currentHpText;
 
+    private SpriteRenderer playerSprite;
+
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start() {
@@ -33,9 +39,12 @@ public class Player : MonoBehaviour
         ChangeCurrHpText();
     }
 
-    public void Discarding(){
-        rb.AddForce(new Vector2(0,1) * 6f, ForceMode2D.Impulse);
+    private void Discarding(){
+        rb.AddForce(new Vector2(0,1) * 4f, ForceMode2D.Impulse);
+        playerSprite.color = new Color(255, 80, 80, 255);
     }
+
+
 
     private void ChangeCurrHpText(){
         currentHpText.text = currentHP.ToString();

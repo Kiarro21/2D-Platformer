@@ -8,9 +8,8 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody2D rb;
     
     [Header("Player Movement Settings")]
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float jumpForse = 15f;
-
+    private float speed = 5f;
+    private float jumpForse = 6f;
 
     private float horizontalMove = 0f;
     private bool playerDirectionMove = true;

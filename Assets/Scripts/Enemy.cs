@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] private Player player;
-    [SerializeField] private float currentHelth = 50f;
-    [SerializeField] private float maxHealth = 50f;
+    [SerializeField] private float currentHelth;
+    [SerializeField] private float maxHealth;
 
     public bool isCooldown = false;
 
