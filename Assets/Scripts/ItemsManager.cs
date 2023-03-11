@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class ItemsManager : MonoBehaviour
 {
-    //[SerializeField] private List<GameObject> curruntItems;
-
+    [Header("Count of Items")]
     [SerializeField] private int pumpkinCount;
     [SerializeField] private int smallPumpkinCount;
 

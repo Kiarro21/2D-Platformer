@@ -5,7 +5,6 @@ public class SmallPumpkin : MonoBehaviour
 {
    [SerializeField] private ItemsManager itemsManager;
 
-   [SerializeField] private ItemsData itemsData;
     public ItemType itemType = ItemType.SmallPumpkin;
     
     public static Action<ItemType> onCollectItem;

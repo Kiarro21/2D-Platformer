@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
 
     private float horizontalMove = 0f;
     private bool playerDirectionMove = true;
+    private LadderState ladderState = LadderState.Up;
     //private States playerState = States.Idle;
     //private DirectionMove playerDirectionMove = DirectionMove.Right;
 
@@ -85,8 +86,21 @@ public class PlayerMove : MonoBehaviour
         isGround = Physics2D.OverlapCircle(groundCheck.position, checkGroundRadius, groundMask);
     }
 
+    private void LadderMove(){
+        if (ladderState == LadderState.Up)
+            rb.velocity = Vector2.up * 2f;
+        if (ladderState == LadderState.Down)
+            rb.velocity = Vector2.up * -2f;
+    }
+
+    void OnTriggerStay2D(Collider2D other){
+        if (other.CompareTag("Ladder")){
+            LadderMove();
+        }
+    }
     
 
     private enum States { Idle, Walk, Jump }
+    private enum LadderState { Up, Down}
     //private enum DirectionMove { Left, Right }
 }
