@@ -6,5 +6,4 @@ public class ItemsData : ScriptableObject
     public string itemName;
     public GameObject itemPrefab;
     public bool isNew = false;
-
 }
