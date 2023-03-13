@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         if (timeBtwAttack <= 0){
             if (Input.GetMouseButtonDown(0)){
                 anim.SetTrigger("Attack");
+                //Метод Attack() вызывается в Event анимации
                 timeBtwAttack = startTimeBtwAttack;
             }
         }

@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public virtual void ApplyDamage(float damage){
+    public void ApplyDamage(float damage){
         Player.instance.TakeHit(damage);
     }
 
@@ -27,8 +27,12 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void Die(){
-        if (currentHelth <= 0)
-            Destroy(gameObject);
+        if (currentHelth <= 0){
+            currentHelth = 0;
+            anim.SetBool("Dead", true);
+            GetComponent<BoxCollider2D>().enabled = false;
+            this.enabled = false;
+        }
     }
 
     public IEnumerator AttackCooldown(float timeCooldown){
