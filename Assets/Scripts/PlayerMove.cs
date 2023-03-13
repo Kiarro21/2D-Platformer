@@ -6,21 +6,18 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rb;
-    
+
     [Header("Player Movement Settings")]
-    private float speed = 5f;
-    private float jumpForse = 6f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForse = 6f;
 
     private float horizontalMove = 0f;
     private bool playerDirectionMove = true;
-    private LadderState ladderState = LadderState.Up;
-    //private States playerState = States.Idle;
-    //private DirectionMove playerDirectionMove = DirectionMove.Right;
+
 
     [Header("Ground Checker Settings")]
     [SerializeField] private bool isGround = false;
-    //[SerializeField]private float checkGroundOffsetY = -0.71f;
-    [SerializeField] private float checkGroundRadius;
+    private float checkGroundRadius = 0.1f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask; 
 
@@ -32,7 +29,7 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void Update() {
+    private void Update(){
 
         CheckGround();
         if (isGround && Input.GetKeyDown(KeyCode.Space)){
@@ -59,27 +56,20 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    private void Jump()
-    {
+    private void Jump(){
         rb.AddForce(transform.up * jumpForse, ForceMode2D.Impulse);
         anim.SetBool("Jump", true);
     }
 
     private void FixedUpdate() {
-
         transform.Translate(Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime, 0, 0);
-        //Vector2 velocity = new Vector2(horizontalMove, rb.velocity.y);
-        //rb.velocity = velocity;
-        //CheckGround();
     }
 
     private void Flip(){
         playerDirectionMove = !playerDirectionMove;
-
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-
     }
 
     private void CheckGround(){
@@ -87,10 +77,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void LadderMove(){
-        if (ladderState == LadderState.Up)
-            rb.velocity = Vector2.up * 2f;
-        if (ladderState == LadderState.Down)
-            rb.velocity = Vector2.up * -2f;
+        rb.velocity = Vector2.up * 2f;
     }
 
     void OnTriggerStay2D(Collider2D other){
@@ -101,6 +88,6 @@ public class PlayerMove : MonoBehaviour
     
 
     private enum States { Idle, Walk, Jump }
-    private enum LadderState { Up, Down}
+
     //private enum DirectionMove { Left, Right }
 }

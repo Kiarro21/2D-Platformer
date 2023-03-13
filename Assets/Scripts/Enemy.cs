@@ -4,16 +4,32 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private Player player;
     [SerializeField] private float currentHelth;
     [SerializeField] private float maxHealth;
 
+    private Animator anim;
+
     public bool isCooldown = false;
 
-    public virtual void ApplyDamage(float damage){
-        player.TakeHit(damage);
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
     }
 
+    public virtual void ApplyDamage(float damage){
+        Player.instance.TakeHit(damage);
+    }
+
+    public virtual void TakeDamage(float damage){
+        anim.SetTrigger("TakeHit");
+        currentHelth -= damage;
+        Die();
+    }
+
+    public void Die(){
+        if (currentHelth <= 0)
+            Destroy(gameObject);
+    }
 
     public IEnumerator AttackCooldown(float timeCooldown){
         isCooldown = true;

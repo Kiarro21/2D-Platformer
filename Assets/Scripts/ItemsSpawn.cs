@@ -18,9 +18,9 @@ public class ItemsSpawn : MonoBehaviour
             }
         }
     }
-
+        
     private void Update() {
-        if (Input.GetMouseButtonDown(0)){
+        if (Input.GetMouseButtonDown(1)){
             OnClickSpawnItems();
         }
         // if (isSpawn){

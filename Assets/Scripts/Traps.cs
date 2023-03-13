@@ -4,12 +4,11 @@ using UnityEngine;
 
 public abstract class Traps : MonoBehaviour
 {
-    [SerializeField] private Player player;
     public bool isCooldown = false;
 
 
     public virtual void ApplyDamage(float damage){
-        player.TakeHit(damage);
+        Player.instance.TakeHit(damage);
     }
 
     public IEnumerator AttackCooldown(float timeCooldown){
